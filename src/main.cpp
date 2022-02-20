@@ -14,8 +14,8 @@ WiFiUDP udp;
 TaskHandle_t vfdTask;
 // vfdDisplay vfd;
 
-const char ssid[]     = "BTHub6-R3CX";
-const char password[] = "gCG4k4FKwrm7";
+const char ssid[]     = "";
+const char password[] = "";
 
 
 int seconds = 0;
