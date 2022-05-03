@@ -56,27 +56,26 @@ public:
     bool dp[2] = {1};
   };
 
-
-void start();
-static void activateVFD();
-static void deactivateVFD();
-static void minutesUp();
-static void hoursUp();
-static void activateDeactivate();
-static void changeBrightness();
-static void manualSetMode();
-static void buttonFunctions();
-static void buttonSetup();
-static void drawDisplay();
-void setHours(uint8_t hours);
-void setMinutes(uint8_t minutes);
-void setDP(bool dp1, bool dp2);
-private:
-    screen _screen; // exchange varable
-static int _posMultiplex;
-static uint16_t _dataMultiplex[5];
-static void _nextMultiplex();
-void _updateMultiplex();
+  static void start();
+  static void activateVFD();
+  static void deactivateVFD();
+  static void minutesUp();
+  static void hoursUp();
+  static void activateDeactivate();
+  static void changeBrightness();
+  static void manualSetMode();
+  static void buttonFunctions();
+  static void buttonSetup();
+  static void drawDisplay();
+  void setHours(uint8_t hours);
+  void setMinutes(uint8_t minutes);
+  void setDP(bool dp1, bool dp2);
+  private:
+      screen _screen; // exchange varable
+  static int _posMultiplex;
+  static uint16_t _dataMultiplex[5];
+  static void _nextMultiplex();
+  void _updateMultiplex();
 };
 
 #endif

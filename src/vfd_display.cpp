@@ -6,11 +6,10 @@
 
 Adafruit_MCP23017 mcp;
 
-int x = 10;
-int _temp = 0;
-uint manual_hours = 0;
-uint manual_minutes = 0;
-uint32_t dutycycle = 100;
+int8_t _temp = 0;
+uint8_t manual_hours = 0;
+uint8_t manual_minutes = 0;
+uint8_t dutycycle = 100;
 bool screenActive = 1;
 bool clockSetMode = 0;
 
@@ -18,7 +17,7 @@ OneButton button_1(btn0, true);
 OneButton button_2(btn1, true);
 OneButton button_3(btn2, true);
 
-uint8_t dutyCycle = 100;
+//uint8_t dutyCycle = 100;
 uint32_t freqMultiplex = 1000;
 uint32_t freqHeat = 10000;
 
@@ -59,15 +58,15 @@ void vfdDisplay::start(){
 
     ledcSetup(0, freqHeat, 8);
     ledcAttachPin(heat_int1, 0);
-    ledcWrite(0, dutyCycle);
+    ledcWrite(0, dutycycle);
 
     tickerMultiplex.attach_ms(
     1000.0/freqMultiplex,
     _nextMultiplex);
-
 }
 
-void vfdDisplay::activateVFD(){
+void vfdDisplay::activateVFD()
+{
         digitalWrite(en_24v, HIGH);
         digitalWrite(heat_nsleep, HIGH);
         digitalWrite(heat_int2, LOW);
@@ -76,7 +75,8 @@ void vfdDisplay::activateVFD(){
         ledcWrite(0, dutycycle);
 }
 
-void vfdDisplay::deactivateVFD(){
+void vfdDisplay::deactivateVFD()
+{
         digitalWrite(en_24v, LOW);
         digitalWrite(heat_nsleep, LOW);
         ledcDetachPin(heat_int1);
@@ -101,12 +101,16 @@ void vfdDisplay::minutesUp(){
 }
 
 void vfdDisplay::activateDeactivate(){
-    if (screenActive == 0){
+    if (screenActive == 0)
+    {
         screenActive = 1;
-        vfdDisplay::activateVFD();}
-    else if (screenActive == 1){
+        activateVFD();
+    }
+    else if (screenActive == 1)
+    {
         screenActive = 0;
-        vfdDisplay::deactivateVFD();}
+        deactivateVFD();
+    }
     Serial.begin(115200);
     Serial.println(screenActive);
 } 

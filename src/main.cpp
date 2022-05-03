@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <ezTime.h>
 #include <WiFi.h>
 #include <esp_wifi.h>
 #include <WiFiUdp.h>
@@ -28,6 +29,7 @@ void initialBoot(){
   Serial.begin(115200);
 
   WiFi.begin(ssid, password);
+  
   for(int i = 0, time = 0; WiFi.status() != WL_CONNECTED; ++i, ++time) {
     i = i % 4;
     //wifiAnimation(i);
